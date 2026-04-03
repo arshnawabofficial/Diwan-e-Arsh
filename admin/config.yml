@@ -1,0 +1,95 @@
+backend:
+  name: git-gateway
+  branch: main
+
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+
+site_url: /
+display_url: /
+logo_url: /images/logo.png
+
+
+collections:
+
+
+# ===============================
+# Ashaar
+# ===============================
+
+  - name: "ashaar"
+    label: "Ashaar"
+    files:
+      - label: "Ashaar"
+        name: "ashaar"
+        file: "content/ashaar.json"
+        format: "json"
+        fields:
+          - label: "Ashaar"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields:
+              - label: "Text"
+                name: "text"
+                widget: "text"
+
+
+
+# ===============================
+# Ghazal
+# ===============================
+
+  - name: "ghazal"
+    label: "Ghazal"
+    files:
+      - label: "Ghazal"
+        name: "ghazal"
+        file: "content/ghazal.json"
+        format: "json"
+        fields:
+          - label: "Ghazal"
+            name: "items"
+            widget: "list"
+            fields:
+
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - Bab-e-Intezaar
+                  - Bab-e-Hijr
+                  - Bab-e-Karb
+                  - Bab-e-Be-Naam
+                  - Bab-e-Tasawwur
+                  - Bab-e-Falsafa
+                  - Bab-e-Iqraar
+                  - Bab-e-Ibtida
+
+              - label: "Text"
+                name: "text"
+                widget: "text"
+
+
+
+# ===============================
+# Rubai
+# ===============================
+
+  - name: "rubai"
+    label: "Rubai"
+    files:
+      - label: "Rubai"
+        name: "rubai"
+        file: "content/rubai.json"
+        format: "json"
+        fields:
+          - label: "Rubai"
+            name: "items"
+            widget: "list"
+            fields:
+              - label: "Text"
+                name: "text"
+                widget: "text"

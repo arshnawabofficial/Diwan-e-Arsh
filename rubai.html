@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rubai | Diwan-e-Arsh</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  
+</head>
+
+
+<body>
+  
+  
+  <!-- Navbar -->
+  
+  <nav class="navbar">
+    
+    <div class="logo">
+      Diwan-e-Arsh
+    </div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+      ☰
+    </div>
+    
+    <ul class="nav-links">
+      
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ashaar.html">Ashaar</a></li>
+      <li><a href="ghazal.html">Ghazal</a></li>
+      <li><a href="rubai.html">Rubai</a></li>
+      <li><a href="about.html">About</a></li>
+      
+    </ul>
+    
+    <button id="theme-toggle">
+      🌙
+    </button>
+    
+  </nav>
+  
+  
+  
+  <!-- Page Header -->
+  
+  <section class="page-header">
+    
+    <h1>Rubai</h1>
+    
+    <p class="subtitle">
+      Four-Line Reflections
+    </p>
+    
+  </section>
+  
+  
+  
+  <!-- Rubai Section -->
+  
+  <section class="rubai-section">
+    
+    <div id="rubai-container">
+      
+      
+      <!-- Sample Rubai -->
+      
+      <div class="rubai">
+        
+        <p>
+          Dil ne jo chaha woh fasana na hua <br>
+          Waqt ka dariya bhi rawana na hua <br>
+          Hum dhoondte rahe khudi ko umr bhar <br>
+          Aur khud se milne ka zamana na hua.
+        </p>
+        
+        <hr>
+        
+      </div>
+      
+      
+      
+      <div class="rubai">
+        
+        <p>
+          Rait pe likhi hui taqdeer the hum <br>
+          Lehron ki bas ek si tasveer the hum <br>
+          Duniya ne samjha humein mitti ka khilona — <br>
+          Toote toh jaana ki zanjeer the hum
+        </p>
+        
+        <hr>
+        
+      </div>
+      </div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer>
+
+<p>Diwan-e-Arsh</p>
+
+<p>© All Rights Reserved</p>
+
+</footer>
+
+
+
+<script src="js/main.js"></script>
+
+
+
+<!-- Rubai Loader -->
+
+<script>
+
+fetch("/content/rubai.json")
+.then(response => response.json())
+.then(data => {
+
+const container = document.getElementById("rubai-container");
+
+
+// Latest Rubai on Top
+
+data.reverse().forEach(item => {
+
+const rubai = document.createElement("div");
+
+rubai.classList.add("rubai");
+
+rubai.innerHTML = `
+<p>
+${item.text.replace(/\n/g,"<br>")}
+</p>
+<hr>
+`;
+
+container.appendChild(rubai);
+
+});
+
+})
+.catch(error => console.log("Rubai Load Error", error));
+
+</script>
+
+
+
+</body>
+</html>

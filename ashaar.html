@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ashaar | Diwan-e-Arsh</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  
+</head>
+
+
+<body>
+  
+  
+  <!-- Navbar -->
+  
+  <nav class="navbar">
+    
+    <div class="logo">
+      Diwan-e-Arsh
+    </div>
+    
+    
+    <div class="menu-toggle" id="mobile-menu">
+      ☰
+    </div>
+    
+    
+    <ul class="nav-links">
+      
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ashaar.html">Ashaar</a></li>
+      <li><a href="ghazal.html">Ghazal</a></li>
+      <li><a href="rubai.html">Rubai</a></li>
+      <li><a href="about.html">About</a></li>
+      
+    </ul>
+    
+    
+    <button id="theme-toggle">
+      🌙
+    </button>
+    
+    
+  </nav>
+  
+  
+  
+  <!-- Page Header -->
+  
+  <section class="page-header">
+    
+    <h1>Ashaar</h1>
+    
+    <p class="subtitle">
+      Short couplets & fragments
+    </p>
+    
+  </section>
+  
+  
+  
+  <!-- Ashaar Container -->
+  
+  <section class="ashaar-section">
+    
+    <div id="ashaar-container">
+      
+      <!-- Ashaar will load here dynamically -->
+      
+    </div>
+    
+  </section>
+  
+<!-- Sample Ashaar (Fallback / Default Content) -->
+
+<div class="ashaar">
+
+<p>
+Mere chehre prr muskurahat ka parda chadha hai,<br>
+Mera Imaan sbko chehra dikhane ki ijazat nhi deta
+</p>
+
+<hr>
+
+<p>
+Hum Mussanif hai janab muft me kya arbo me nhi bikte,<br>
+Hum lafzon ke kimat batate hai bazaaro me nhi bikte.
+</p>
+
+<hr>
+
+<p>
+Abb to bss naam me hi Arsh hai <br>
+asl manzil hamari bhi farsh hai.
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer>
+
+<p>Diwan-e-Arsh</p>
+
+<p>© All Rights Reserved</p>
+
+</footer>
+
+
+
+<script src="js/main.js"></script>
+
+
+
+<!-- CMS Ashaar Loader -->
+
+<script>
+
+// Fetch Ashaar from content folder
+
+fetch("/content/ashaar.json")
+.then(response => response.json())
+.then(data => {
+
+const container = document.getElementById("ashaar-container");
+
+
+// Reverse order so latest on top
+
+data.reverse().forEach(item => {
+
+const ashaar = document.createElement("div");
+ashaar.classList.add("ashaar");
+
+ashaar.innerHTML = `
+<p>${item.text}</p>
+<hr>
+`;
+
+container.appendChild(ashaar);
+
+});
+
+})
+.catch(error => {
+console.log("Ashaar loading fallback");
+});
+
+</script>
+
+
+
+</body>
+</html>
