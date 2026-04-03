@@ -2,53 +2,39 @@ backend:
   name: git-gateway
   branch: main
 
-
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-
-site_url: /
-display_url: /
-logo_url: /images/logo.png
-
-
 collections:
 
-
-# ===============================
+# ========================
 # Ashaar
-# ===============================
+# ========================
 
   - name: "ashaar"
     label: "Ashaar"
     files:
-      - label: "Ashaar"
+      - file: "content/ashaar.json"
+        label: "Ashaar"
         name: "ashaar"
-        file: "content/ashaar.json"
-        format: "json"
         fields:
           - label: "Ashaar"
             name: "items"
             widget: "list"
-            summary: "{{fields.text}}"
             fields:
-              - label: "Text"
-                name: "text"
-                widget: "text"
+              - { label: "Text", name: "text", widget: "text" }
 
 
-
-# ===============================
+# ========================
 # Ghazal
-# ===============================
+# ========================
 
   - name: "ghazal"
     label: "Ghazal"
     files:
-      - label: "Ghazal"
+      - file: "content/ghazal.json"
+        label: "Ghazal"
         name: "ghazal"
-        file: "content/ghazal.json"
-        format: "json"
         fields:
           - label: "Ghazal"
             name: "items"
@@ -68,28 +54,22 @@ collections:
                   - Bab-e-Iqraar
                   - Bab-e-Ibtida
 
-              - label: "Text"
-                name: "text"
-                widget: "text"
+              - { label: "Text", name: "text", widget: "text" }
 
 
-
-# ===============================
+# ========================
 # Rubai
-# ===============================
+# ========================
 
   - name: "rubai"
     label: "Rubai"
     files:
-      - label: "Rubai"
+      - file: "content/rubai.json"
+        label: "Rubai"
         name: "rubai"
-        file: "content/rubai.json"
-        format: "json"
         fields:
           - label: "Rubai"
             name: "items"
             widget: "list"
             fields:
-              - label: "Text"
-                name: "text"
-                widget: "text"
+              - { label: "Text", name: "text", widget: "text" }
