@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 /* ===============================
-   Mobile Menu Toggle (Premium)
+   Mobile Menu Toggle
 =============================== */
 
 const menuToggle = document.getElementById("mobile-menu");
@@ -28,7 +28,6 @@ document.body.style.overflow="auto";
 }
 
 
-
 /* ===============================
    Close Menu On Click
 =============================== */
@@ -52,27 +51,21 @@ menuToggle.innerHTML="☰";
 });
 
 
-
 /* ===============================
-   Active Menu Highlight
+   Active Menu
 =============================== */
 
 const currentPage = location.pathname.split("/").pop();
 
 document.querySelectorAll(".nav-links a").forEach(link=>{
-
-const linkPage = link.getAttribute("href");
-
-if(linkPage === currentPage){
+if(link.getAttribute("href") === currentPage){
 link.classList.add("active-link");
 }
-
 });
 
 
-
 /* ===============================
-   Dark Mode Toggle
+   Dark Mode
 =============================== */
 
 const themeToggle=document.getElementById("theme-toggle");
@@ -95,53 +88,10 @@ themeToggle.innerHTML="🌙";
 
 }
 
-
-
-/* ===============================
-   Load Saved Theme
-=============================== */
-
-const savedTheme=localStorage.getItem("theme");
-
-if(savedTheme==="dark"){
+if(localStorage.getItem("theme")==="dark"){
 document.body.classList.add("dark");
 if(themeToggle) themeToggle.innerHTML="☀️";
 }
-
-
-
-/* ===============================
-   Smooth Scroll
-=============================== */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-
-anchor.addEventListener("click",function(e){
-
-const target=document.querySelector(this.getAttribute("href"));
-
-if(target){
-
-e.preventDefault();
-
-target.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-});
-
-});
-
-
-
-/* ===============================
-   Fade Page Animation
-=============================== */
-
-document.body.classList.add("page-loaded");
-
 
 
 /* ===============================
@@ -156,10 +106,11 @@ fetch("/content/ashaar.json")
 .then(res=>res.json())
 .then(data=>{
 
+if(!data.items) return;
+
 data.items.slice().reverse().forEach(item=>{
 
 const el=document.createElement("div");
-
 el.classList.add("ashaar");
 
 el.innerHTML=`
@@ -171,10 +122,10 @@ ashaarContainer.appendChild(el);
 
 });
 
-});
+})
+.catch(err=>console.log("Ashaar error",err));
 
 }
-
 
 
 /* ===============================
@@ -183,11 +134,13 @@ ashaarContainer.appendChild(el);
 
 const ghazalContainers=document.querySelectorAll(".ghazal-container");
 
-if(ghazalContainers.length>0){
+if(ghazalContainers.length){
 
 fetch("/content/ghazal.json")
 .then(res=>res.json())
 .then(data=>{
+
+if(!data.items) return;
 
 data.items.slice().reverse().forEach(item=>{
 
@@ -200,7 +153,6 @@ const section=document.querySelector(`#${id} .ghazal-container`);
 if(section){
 
 const el=document.createElement("div");
-
 el.classList.add("ghazal");
 
 el.innerHTML=`
@@ -214,10 +166,10 @@ section.appendChild(el);
 
 });
 
-});
+})
+.catch(err=>console.log("Ghazal error",err));
 
 }
-
 
 
 /* ===============================
@@ -231,6 +183,8 @@ if(rubaiContainer){
 fetch("/content/rubai.json")
 .then(res=>res.json())
 .then(data=>{
+
+if(!data.items) return;
 
 data.items.slice().reverse().forEach(item=>{
 
@@ -247,10 +201,10 @@ rubaiContainer.appendChild(el);
 
 });
 
-});
+})
+.catch(err=>console.log("Rubai error",err));
 
 }
-
 
 
 /* ===============================
@@ -260,6 +214,8 @@ rubaiContainer.appendChild(el);
 fetch("/content/kalaam.json")
 .then(res=>res.json())
 .then(data=>{
+
+if(!data.items) return;
 
 data.items.slice().reverse().forEach(item=>{
 
@@ -281,8 +237,8 @@ container.appendChild(el);
 
 });
 
-});
-
+})
+.catch(err=>console.log("Kalaam error",err));
 
 
 /* ===============================
@@ -296,6 +252,8 @@ if(khutootContainer){
 fetch("/content/khutoot.json")
 .then(res=>res.json())
 .then(data=>{
+
+if(!data.items) return;
 
 data.items.slice().reverse().forEach(item=>{
 
@@ -324,10 +282,10 @@ khutootContainer.appendChild(el);
 
 });
 
-});
+})
+.catch(err=>console.log("Khutoot error",err));
 
 }
-
 
 
 /* ===============================
