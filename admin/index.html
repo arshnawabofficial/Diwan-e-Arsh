@@ -20,7 +20,6 @@ background:#fafafa;
 font-family:Inter,system-ui,sans-serif;
 }
 
-
 /* Loader */
 
 .loader{
@@ -66,7 +65,6 @@ animation:fade 1.5s infinite;
 100%{opacity:.2}
 }
 
-
 /* Dark Mode */
 
 @media(prefers-color-scheme:dark){
@@ -94,7 +92,7 @@ background:#fff;
 <body>
 
 
-<div class="loader">
+<div class="loader" id="loader">
 
 <h1>Diwan-e-Arsh</h1>
 
@@ -105,18 +103,13 @@ background:#fff;
 </div>
 
 
-<!-- Netlify Identity -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-<!-- Decap CMS -->
 <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 
 
 <script>
 
-/* ===============================
-Auto Login (Password Removed)
-=============================== */
+/* Auto Login */
 
 if (window.netlifyIdentity) {
 
@@ -135,24 +128,22 @@ document.location.href = "/admin/";
 }
 
 
-/* ===============================
-Remove Loader
-=============================== */
+/* Fix Loader */
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", function(){
 
-const loader=document.querySelector(".loader");
+setTimeout(function(){
+
+const loader = document.getElementById("loader");
 
 if(loader){
 loader.style.opacity="0";
-
-setTimeout(()=>{
-loader.style.display="none";
-},400);
+setTimeout(()=> loader.style.display="none",400);
 }
 
-});
+},800);
 
+});
 
 </script>
 
