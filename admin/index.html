@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Diwan-e-Arsh CMS</title>
-
 <meta name="robots" content="noindex" />
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-body{
-margin:0;
-background:#fafafa;
-font-family:Inter,system-ui,sans-serif;
-}
-</style>
-
 </head>
-
 
 <body>
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
 <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 
 <script>
-
 if (window.netlifyIdentity) {
 
-window.netlifyIdentity.on("init", user => {
+window.netlifyIdentity.init();
 
+window.netlifyIdentity.on("init", user => {
 if (!user) {
 window.netlifyIdentity.open();
 }
-
 });
 
 window.netlifyIdentity.on("login", () => {
@@ -46,9 +28,7 @@ document.location.href = "/admin/";
 });
 
 }
-
 </script>
 
 </body>
-
 </html>
