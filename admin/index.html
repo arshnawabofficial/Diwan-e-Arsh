@@ -20,7 +20,6 @@ background:#fafafa;
 font-family:Inter,system-ui,sans-serif;
 }
 
-
 /* Loader */
 
 .loader{
@@ -37,7 +36,6 @@ background:#fafafa;
 z-index:9999;
 }
 
-
 .loader h1{
 font-family:"Playfair Display",serif;
 font-size:26px;
@@ -45,14 +43,12 @@ letter-spacing:2px;
 margin-bottom:8px;
 }
 
-
 .loader p{
 font-size:12px;
 letter-spacing:2px;
 opacity:.6;
 margin-bottom:20px;
 }
-
 
 .line{
 width:80px;
@@ -67,7 +63,6 @@ animation:fade 1.5s infinite;
 50%{opacity:.7}
 100%{opacity:.2}
 }
-
 
 /* Dark Mode */
 
@@ -95,7 +90,6 @@ background:#fff;
 
 <body>
 
-
 <div class="loader">
 
 <h1>Diwan-e-Arsh</h1>
@@ -107,14 +101,42 @@ background:#fff;
 </div>
 
 
+<!-- Netlify Identity -->
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Decap CMS -->
 
 <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 
 
-
 <script>
+
+/* Auto Open Login */
+
+if (window.netlifyIdentity) {
+
+window.netlifyIdentity.on("init", user => {
+
+if (!user) {
+window.netlifyIdentity.open();
+}
+
+});
+
+}
+
+
+/* Redirect After Login */
+
+if (window.netlifyIdentity) {
+
+window.netlifyIdentity.on("login", () => {
+document.location.href = "/admin/";
+});
+
+}
+
 
 /* Remove Loader */
 
@@ -135,7 +157,6 @@ loader.style.display="none";
 });
 
 </script>
-
 
 </body>
 
