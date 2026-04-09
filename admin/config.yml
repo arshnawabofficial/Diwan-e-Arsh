@@ -2,6 +2,8 @@ backend:
   name: github
   repo: arshnawabofficial/Diwan-e-Arsh
   branch: main
+  base_url: https://decap-cms-oauth.vercel.app
+  auth_endpoint: auth
 
 publish_mode: editorial_workflow
 
@@ -116,10 +118,6 @@ collections:
         label: "Khutoot"
         name: "khutoot"
         fields:
-          - label: "Letters"
-            name: "items"
-            widget: "list"
-            fields:
               - { label: "Title", name: "title", widget: "string", required: false }
               - { label: "Date", name: "date", widget: "string", required: false }
               - { label: "Letter", name: "text", widget: "text" }
