@@ -1394,6 +1394,353 @@ rgba(0,0,0,0)
 );
 z-index: 1;
 }
+
+/* ===============================
+   Kalaam-e-Fikr Hero
+=============================== */
+
+.kalaam-hero{
+height:70vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.kalaam-hero h1{
+font-size:clamp(28px,4vw,42px);
+letter-spacing:3px;
+white-space:nowrap;
+font-weight:500;
+}
+
+.hero-divider{
+width:60px;
+height:1px;
+background:rgba(0,0,0,0.2);
+margin:20px auto;
+}
+
+.dark .hero-divider{
+background:rgba(255,255,255,0.2);
+}
+
+.kalaam-hero .subtitle{
+opacity:.7;
+letter-spacing:2px;
+margin-top:10px;
+}
+
+
+
+/* ===============================
+   Premium Index Navigation
+=============================== */
+
+.kalaam-index{
+text-align:center;
+padding:60px 20px;
+max-width:800px;
+margin:auto;
+}
+
+.index-line{
+width:100%;
+height:1px;
+background:rgba(0,0,0,0.08);
+margin:25px 0;
+}
+
+.dark .index-line{
+background:rgba(255,255,255,0.08);
+}
+
+.index-links{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.index-links a{
+text-decoration:none;
+font-size:14px;
+letter-spacing:2px;
+opacity:.6;
+transition:0.3s ease;
+position:relative;
+}
+
+.index-links a:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+.index-links span{
+opacity:.3;
+font-size:12px;
+}
+
+
+
+/* ===============================
+   Kalaam Sections
+=============================== */
+
+.kalaam-section{
+max-width:750px;
+margin:auto;
+padding:140px 20px;
+text-align:center;
+}
+
+
+
+/* ===============================
+   Section Headings
+=============================== */
+
+.kalaam-heading{
+margin-bottom:60px;
+}
+
+.kalaam-heading h2{
+font-size:30px;
+letter-spacing:2px;
+margin-bottom:20px;
+font-weight:500;
+}
+
+.heading-line{
+width:40px;
+height:1px;
+background:rgba(0,0,0,0.2);
+margin:auto;
+margin-bottom:60px;
+}
+
+.dark .heading-line{
+background:rgba(255,255,255,0.2);
+}
+
+
+
+/* ===============================
+   Kalaam Content
+=============================== */
+
+.kalaam-container{
+display:flex;
+flex-direction:column;
+gap:70px;
+}
+
+.kalaam{
+font-size:18px;
+line-height:2;
+letter-spacing:0.4px;
+}
+
+
+
+/* ===============================
+   Smooth Scroll
+=============================== */
+
+html{
+scroll-behavior:smooth;
+}
+
+
+
+/* ===============================
+   Mobile Responsive
+=============================== */
+
+@media(max-width:768px){
+
+.kalaam-hero{
+height:60vh;
+}
+
+.kalaam-hero h1{
+font-size:28px;
+}
+
+.kalaam-index{
+padding:40px 20px;
+}
+
+.kalaam-section{
+padding:90px 20px;
+}
+
+.kalaam-heading h2{
+font-size:24px;
+}
+
+.kalaam{
+font-size:16px;
+}
+
+}
+
+
+
+/* ===============================
+   Ultra Small Devices
+=============================== */
+
+@media(max-width:420px){
+
+.index-links{
+gap:10px;
+}
+
+.kalaam-hero h1{
+font-size:24px;
+}
+
+}
+/* Kalaam Index Links */
+
+.index-links a{
+text-decoration:none;
+font-size:14px;
+letter-spacing:2px;
+opacity:.65;
+transition:0.35s ease;
+color:#111;
+}
+
+.index-links a:hover{
+opacity:1;
+color:#bfa46f;
+transform:translateY(-2px);
+}
+
+
+/* Dark Mode */
+
+.dark .index-links a{
+color:#eaeaea;
+}
+
+.dark .index-links a:hover{
+color:#bfa46f;
+}
+/* ===============================
+Khutoot Hero
+=============================== */
+
+.khutoot-hero{
+height:65vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.khutoot-hero h1{
+font-size:clamp(30px,4vw,42px);
+letter-spacing:3px;
+font-family:'Playfair Display',serif;
+}
+
+.khutoot-hero .subtitle{
+opacity:.7;
+letter-spacing:2px;
+margin-top:10px;
+}
+
+
+
+/* ===============================
+Letter Layout
+=============================== */
+
+.khutoot-section{
+max-width:780px;
+margin:auto;
+padding:120px 20px;
+}
+
+.khutoot{
+margin-bottom:120px;
+padding:70px 50px;
+border:1px solid rgba(0,0,0,0.06);
+border-radius:6px;
+}
+
+
+
+/* Letter Header */
+
+.khutoot-header{
+margin-bottom:40px;
+}
+
+.khutoot-date{
+font-size:13px;
+opacity:.5;
+letter-spacing:1px;
+margin-bottom:10px;
+}
+
+.khutoot-title{
+font-size:22px;
+font-family:'Playfair Display',serif;
+}
+
+
+
+/* Letter Content */
+
+.khutoot-content{
+font-family:'Cormorant Garamond',serif;
+font-size:20px;
+line-height:2.1;
+letter-spacing:.3px;
+}
+
+
+
+/* Signature */
+
+.khutoot-sign{
+margin-top:40px;
+font-style:italic;
+opacity:.7;
+font-family:'Playfair Display',serif;
+}
+
+
+
+/* Dark Mode */
+
+.dark .khutoot{
+border:1px solid rgba(255,255,255,0.08);
+}
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.khutoot{
+padding:40px 25px;
+}
+
+.khutoot-content{
+font-size:18px;
+}
+
+}
 /* ===============================
    Mobile Responsive
 =============================== */

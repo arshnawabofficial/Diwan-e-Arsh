@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Khutoot | Diwan-e-Arsh</title>
+
+<link rel="stylesheet" href="css/styles.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+<div class="logo">
+Diwan-e-Arsh
+</div>
+
+<div class="menu-toggle" id="mobile-menu">
+☰
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="ashaar.html">Ashaar</a></li>
+<li><a href="ghazal.html">Ghazal</a></li>
+<li><a href="rubai.html">Rubai</a></li>
+<li><a href="kalaam.html">Kalaam-e-Fikr</a></li>
+<li><a href="khutoot.html">Khutoot</a></li>
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+<button id="theme-toggle">
+🌙
+</button>
+
+</nav>
+
+
+
+<!-- Hero -->
+
+<section class="khutoot-hero">
+
+<h1>Khutoot</h1>
+
+<div class="hero-divider"></div>
+
+<p class="subtitle">
+Love • Reflection • Regret 
+</p>
+
+</section>
+
+
+
+<!-- Letters Section -->
+
+<section class="khutoot-section">
+
+<div id="khutoot-container">
+
+<!-- Letters will load from CMS -->
+
+</div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer>
+
+<p>Diwan-e-Arsh</p>
+
+<p>© All Rights Reserved</p>
+
+</footer>
+
+
+
+<script src="js/main.js"></script>
+
+
+
+<!-- Khutoot CMS Loader -->
+
+<script>
+
+fetch("/content/khutoot.json")
+.then(response => response.json())
+.then(data => {
+
+const container = document.getElementById("khutoot-container");
+
+if(data.items){
+
+data.items.slice().reverse().forEach(item => {
+
+const letter = document.createElement("div");
+
+letter.classList.add("khutoot");
+
+letter.innerHTML = `
+
+<div class="khutoot-header">
+
+<div class="khutoot-date">
+${item.date || ""}
+</div>
+
+<div class="khutoot-title">
+${item.title || ""}
+</div>
+
+</div>
+
+<div class="khutoot-content">
+${item.text.replace(/\n/g,"<br>")}
+</div>
+
+<div class="khutoot-sign">
+— Arsh
+</div>
+
+`;
+
+container.appendChild(letter);
+
+});
+
+}
+
+})
+.catch(error => console.log("Khutoot Load Error", error));
+
+</script>
+
+
+
+</body>
+</html>

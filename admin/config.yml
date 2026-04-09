@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+publish_mode: editorial_workflow
+
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
@@ -73,3 +75,50 @@ collections:
             widget: "list"
             fields:
               - { label: "Text", name: "text", widget: "text" }
+
+
+# ========================
+# Kalaam-e-Fikr
+# ========================
+
+  - name: "kalaam"
+    label: "Kalaam-e-Fikr"
+    files:
+      - file: "content/kalaam.json"
+        label: "Kalaam-e-Fikr"
+        name: "kalaam"
+        fields:
+          - label: "Kalaam"
+            name: "items"
+            widget: "list"
+            fields:
+
+              - label: "Section"
+                name: "section"
+                widget: "select"
+                options:
+                  - insaan
+                  - khuda
+                  - zindagi
+
+              - { label: "Text", name: "text", widget: "text" }
+
+
+# ========================
+# Khutoot
+# ========================
+
+  - name: "khutoot"
+    label: "Khutoot"
+    files:
+      - file: "content/khutoot.json"
+        label: "Khutoot"
+        name: "khutoot"
+        fields:
+          - label: "Letters"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Date", name: "date", widget: "string", required: false }
+              - { label: "Letter", name: "text", widget: "text" }

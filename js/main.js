@@ -1,281 +1,356 @@
-document.addEventListener("DOMContentLoaded", function() {
-  
-  
-  
-  
-  /* ===============================
-     Mobile Menu Toggle
-  =============================== */
-  
-  const menuToggle = document.getElementById("mobile-menu");
-  const navLinks = document.querySelector(".nav-links");
-  
-  if (menuToggle && navLinks) {
-    
-    menuToggle.addEventListener("click", () => {
-      
-      navLinks.classList.toggle("active");
-      
-      if (menuToggle.classList.contains("active")) {
-        menuToggle.classList.remove("active");
-        menuToggle.innerHTML = "☰";
-      } else {
-        menuToggle.classList.add("active");
-        menuToggle.innerHTML = "✕";
-      }
-      
-    });
-    
-  }
-  
-  
-  
-  
-  /* ===============================
-     Close Menu On Link Click
-  =============================== */
-  
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    
-    link.addEventListener("click", () => {
-      
-      if (navLinks) {
-        navLinks.classList.remove("active");
-      }
-      
-      if (menuToggle) {
-        menuToggle.classList.remove("active");
-        menuToggle.innerHTML = "☰";
-      }
-      
-    });
-    
-  });
-  
-  
-  
-  
-  /* ===============================
-     Dark Mode Toggle
-  =============================== */
-  
-  const themeToggle = document.getElementById("theme-toggle");
-  
-  if (themeToggle) {
-    
-    themeToggle.addEventListener("click", () => {
-      
-      document.body.classList.toggle("dark");
-      
-      if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-      } else {
-        localStorage.setItem("theme", "light");
-      }
-      
-    });
-    
-  }
-  
-  
-  
-  
-  /* ===============================
-     Load Saved Theme
-  =============================== */
-  
-  const savedTheme = localStorage.getItem("theme");
-  
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-  }
-  
-  
-  
-  
-  /* ===============================
-     Load Ashaar
-  =============================== */
-  
-  const container = document.getElementById("ashaar-container");
-  
-  if (container) {
-    
-    fetch("/content/ashaar.json")
-      .then(response => response.json())
-      .then(data => {
-        
-        data.reverse().forEach(item => {
-          
-          const ashaar = document.createElement("div");
-          
-          ashaar.classList.add("ashaar");
-          
-          ashaar.innerHTML = `
-<p>
-${item.text.replace(/\n/g,"<br>")}
-</p>
-<hr>
-`;
-          
-          container.appendChild(ashaar);
-          
-        });
-        
-      })
-      .catch(error => console.log("Ashaar Load Error", error));
-    
-  }
-  
-  
-  
-});
+document.addEventListener("DOMContentLoaded", function(){
+
+
 /* ===============================
-   Ghazal Smooth Scroll
+   Mobile Menu Toggle (Premium)
 =============================== */
 
-const ghazalLinks = document.querySelectorAll(".ghazal-nav a");
+const menuToggle = document.getElementById("mobile-menu");
+const navLinks = document.querySelector(".nav-links");
 
-if(ghazalLinks.length > 0){
+if(menuToggle && navLinks){
 
-ghazalLinks.forEach(link => {
+menuToggle.addEventListener("click",()=>{
 
-link.addEventListener("click", function(e){
+navLinks.classList.toggle("active");
+menuToggle.classList.toggle("active");
+
+if(menuToggle.classList.contains("active")){
+menuToggle.innerHTML="✕";
+document.body.style.overflow="hidden";
+}else{
+menuToggle.innerHTML="☰";
+document.body.style.overflow="auto";
+}
+
+});
+
+}
+
+
+
+/* ===============================
+   Close Menu On Click
+=============================== */
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+if(navLinks){
+navLinks.classList.remove("active");
+document.body.style.overflow="auto";
+}
+
+if(menuToggle){
+menuToggle.classList.remove("active");
+menuToggle.innerHTML="☰";
+}
+
+});
+
+});
+
+
+
+/* ===============================
+   Active Menu Highlight
+=============================== */
+
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+const linkPage = link.getAttribute("href");
+
+if(linkPage === currentPage){
+link.classList.add("active-link");
+}
+
+});
+
+
+
+/* ===============================
+   Dark Mode Toggle
+=============================== */
+
+const themeToggle=document.getElementById("theme-toggle");
+
+if(themeToggle){
+
+themeToggle.addEventListener("click",()=>{
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+localStorage.setItem("theme","dark");
+themeToggle.innerHTML="☀️";
+}else{
+localStorage.setItem("theme","light");
+themeToggle.innerHTML="🌙";
+}
+
+});
+
+}
+
+
+
+/* ===============================
+   Load Saved Theme
+=============================== */
+
+const savedTheme=localStorage.getItem("theme");
+
+if(savedTheme==="dark"){
+document.body.classList.add("dark");
+if(themeToggle) themeToggle.innerHTML="☀️";
+}
+
+
+
+/* ===============================
+   Smooth Scroll
+=============================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
 
 e.preventDefault();
 
-const target = document.querySelector(this.getAttribute("href"));
-
-if(target){
 target.scrollIntoView({
-behavior: "smooth"
-});
-}
-
-});
-
+behavior:"smooth"
 });
 
 }
+
+});
+
+});
 
 
 
 /* ===============================
-   Load Ghazal Dynamically
+   Fade Page Animation
 =============================== */
 
-const ghazalContainers = document.querySelectorAll(".ghazal-container");
-
-if(ghazalContainers.length > 0){
-
-fetch("/content/ghazal.json")
-.then(res => res.json())
-.then(data => {
+document.body.classList.add("page-loaded");
 
 
-// Latest ghazal on top
 
-data.reverse().forEach(item => {
+/* ===============================
+   Load Ashaar
+=============================== */
 
-const section = document.querySelector(`#${item.bab} .ghazal-container`);
+const ashaarContainer=document.getElementById("ashaar-container");
 
-if(section){
+if(ashaarContainer){
 
-const ghazal = document.createElement("div");
+fetch("/content/ashaar.json")
+.then(res=>res.json())
+.then(data=>{
 
-ghazal.classList.add("ghazal");
+data.items.slice().reverse().forEach(item=>{
 
-ghazal.innerHTML = `
-<p>
-${item.text.replace(/\n/g,"<br>")}
-</p>
+const el=document.createElement("div");
+
+el.classList.add("ashaar");
+
+el.innerHTML=`
+<p>${item.text.replace(/\n/g,"<br>")}</p>
 <hr>
 `;
 
-section.appendChild(ghazal);
+ashaarContainer.appendChild(el);
+
+});
+
+});
+
+}
+
+
+
+/* ===============================
+   Load Ghazal
+=============================== */
+
+const ghazalContainers=document.querySelectorAll(".ghazal-container");
+
+if(ghazalContainers.length>0){
+
+fetch("/content/ghazal.json")
+.then(res=>res.json())
+.then(data=>{
+
+data.items.slice().reverse().forEach(item=>{
+
+const id=item.category
+.toLowerCase()
+.replace(/ /g,"-");
+
+const section=document.querySelector(`#${id} .ghazal-container`);
+
+if(section){
+
+const el=document.createElement("div");
+
+el.classList.add("ghazal");
+
+el.innerHTML=`
+<p>${item.text.replace(/\n/g,"<br>")}</p>
+<hr>
+`;
+
+section.appendChild(el);
 
 }
 
 });
 
-})
-.catch(err => console.log("Ghazal Load Error", err));
+});
 
 }
+
+
+
 /* ===============================
-   Load Rubai Dynamically
+   Load Rubai
 =============================== */
 
-const rubaiContainer = document.getElementById("rubai-container");
+const rubaiContainer=document.getElementById("rubai-container");
 
 if(rubaiContainer){
 
 fetch("/content/rubai.json")
-.then(response => response.json())
-.then(data => {
+.then(res=>res.json())
+.then(data=>{
 
+data.items.slice().reverse().forEach(item=>{
 
-// Latest Rubai on Top
+const el=document.createElement("div");
 
-data.reverse().forEach(item => {
+el.classList.add("rubai");
 
-const rubai = document.createElement("div");
-
-rubai.classList.add("rubai");
-
-rubai.innerHTML = `
-<p>
-${item.text.replace(/\n/g,"<br>")}
-</p>
+el.innerHTML=`
+<p>${item.text.replace(/\n/g,"<br>")}</p>
 <hr>
 `;
 
-rubaiContainer.appendChild(rubai);
+rubaiContainer.appendChild(el);
 
 });
 
-})
-.catch(error => console.log("Rubai Load Error", error));
+});
 
 }
 
 
 
 /* ===============================
-   Fade Animation on Scroll
+   Load Kalaam
 =============================== */
 
-const rubaiObserver = new IntersectionObserver((entries) => {
+fetch("/content/kalaam.json")
+.then(res=>res.json())
+.then(data=>{
 
-entries.forEach(entry => {
+data.items.slice().reverse().forEach(item=>{
 
-if(entry.isIntersecting){
-entry.target.classList.add("show");
+const container=document.getElementById(item.section+"-container");
+
+if(container){
+
+const el=document.createElement("div");
+
+el.classList.add("kalaam");
+
+el.innerHTML=`
+<p>${item.text.replace(/\n/g,"<br>")}</p>
+`;
+
+container.appendChild(el);
+
 }
 
 });
 
 });
 
-document.querySelectorAll(".rubai").forEach((el) => {
-rubaiObserver.observe(el);
+
+
+/* ===============================
+   Load Khutoot
+=============================== */
+
+const khutootContainer=document.getElementById("khutoot-container");
+
+if(khutootContainer){
+
+fetch("/content/khutoot.json")
+.then(res=>res.json())
+.then(data=>{
+
+data.items.slice().reverse().forEach(item=>{
+
+const el=document.createElement("div");
+
+el.classList.add("khutoot");
+
+el.innerHTML=`
+
+<div class="khutoot-header">
+<div class="khutoot-date">${item.date||""}</div>
+<div class="khutoot-title">${item.title||""}</div>
+</div>
+
+<div class="khutoot-content">
+${item.text.replace(/\n/g,"<br>")}
+</div>
+
+<div class="khutoot-sign">
+— Arsh
+</div>
+
+`;
+
+khutootContainer.appendChild(el);
+
 });
-const appreciationForm = document.getElementById("appreciationForm");
 
-if(appreciationForm){
+});
 
-appreciationForm.addEventListener("submit", function(e){
+}
+
+
+
+/* ===============================
+   WhatsApp Form
+=============================== */
+
+const form=document.getElementById("appreciationForm");
+
+if(form){
+
+form.addEventListener("submit",function(e){
 
 e.preventDefault();
 
-const message = document.getElementById("appreciationMessage").value;
+const msg=document.getElementById("appreciationMessage").value;
 
-const phone = "917417775579";
+const phone="917417775579";
 
-const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-window.open(url, "_blank");
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank");
 
 });
 
 }
+
+
+});
